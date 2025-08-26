@@ -1,0 +1,38 @@
+public class Solution {
+    int[] update(int [] arr,int[] r){
+         int n=r.Length;
+          for (int i=0;i<n;i++){
+            if (i-1>=0 && r[i]>r[i-1]){
+                arr[i]=arr[i-1]+1;
+            }
+        }
+        return arr;
+    }
+     int[] update2(int [] arr,int[] r){
+         int n=r.Length;
+          for (int i=n-1;i>=0;i--){
+            if (i+1<n&& r[i]>r[i+1]){
+                arr[i]=arr[i+1]+1;
+            }
+        }
+        return arr;
+    }
+    public int Candy(int[] r) {
+        
+        int n=r.Length;
+        int [] arr =new int[n];
+        int []arr2 =new int[n];
+        for (int i=0;i<n;i++){
+            arr[i]=1;
+            arr2[i]=1;
+        }
+        arr=update (arr,r);
+       
+        arr2=update2 (arr2,r);
+        int res=0;
+        for (int i=0;i<n;i++){
+            res+=Math.Max(arr[i],arr2[i]);
+        }
+        return res;
+    }
+}
