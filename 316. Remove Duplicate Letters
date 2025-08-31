@@ -1,0 +1,31 @@
+public class Solution {
+    public string RemoveDuplicateLetters(string s) {
+        Dictionary<char,int> dic = new Dictionary<char,int>();
+        int[] freq = new int[26];
+
+        for (int i=0; i<s.Length; i++) {
+            if (!dic.ContainsKey(s[i])) {
+                dic[s[i]] = 0;
+            }
+            dic[s[i]]++;
+        }
+
+        Stack<char> st = new Stack<char>();
+
+        for (int i=0; i<s.Length; i++) {
+            dic[s[i]]--;
+
+            while (st.Count != 0 && dic[st.Peek()] > 0 && s[i] < st.Peek() && freq[s[i]-'a'] == 0) {
+                freq[st.Peek()-'a'] = 0;
+                st.Pop();
+            }
+
+            if (freq[s[i]-'a'] == 0) {
+                st.Push(s[i]);
+                freq[s[i]-'a'] = 1;
+            }
+        }
+
+        return new string(st.Reverse().ToArray());
+    }
+}
