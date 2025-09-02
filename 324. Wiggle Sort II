@@ -1,0 +1,29 @@
+public class Solution {
+    public void WiggleSort(int[] arr) {
+        Array.Sort(arr);
+        int n=arr.Length;
+        int []arr2=new int[n+1];
+        int x = (n/2)+(n%2==0?0:1);
+        int ct=(x-1)*2;
+       for (int i=0;i<x;i++)
+        {
+            arr2[ct]=arr[i];
+            ct-=2;
+        }
+        Console.WriteLine(ct);
+       
+        List<int>list=new List<int>();
+        for (int i=x;i<n;i++){
+          list.Add(arr[i]);
+
+        }
+        ct =list.Count-1;
+        for(int i=1;i<n;i+=2){
+           arr2[i]=list[ct];
+           ct--;
+        }
+        for (int i=0;i<n;i++){
+            arr[i]=arr2[i];
+        }
+    }
+}
