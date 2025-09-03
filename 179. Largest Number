@@ -1,0 +1,27 @@
+public class Solution {
+    public class CustomCompare : IComparer<string>
+{
+    public int Compare(string x, string y)
+    {
+        string s1 = x+y;
+        string s2= y+x;
+        return s2.CompareTo(s1);
+    }
+}
+    public string LargestNumber(int[] nums) {
+        List<string>ls =new List<string>();
+        for (int i=0;i<nums.Length;i++){
+            ls.Add(nums[i].ToString());
+        }
+              ls.Sort(new CustomCompare());
+              if (ls[0]=="0")
+              return "0";
+ string res="";
+  for (int i = 0; i <ls.Count; i++)
+ {
+    res+=ls[i];
+ }
+
+ return res;
+    }
+}
