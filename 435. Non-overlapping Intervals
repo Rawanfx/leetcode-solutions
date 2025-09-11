@@ -1,0 +1,22 @@
+public class Solution {
+    
+ 
+    public int EraseOverlapIntervals(int[][] arr) {
+        Array.Sort(arr, (a, b) => a[1].CompareTo(b[1]));
+
+        int n=arr.Length;
+        int x=arr[0][0];
+        int y= arr[0][1];
+        int ct=0;
+       for (int i=1;i<n;i++){
+        if ( y>arr[i][0]){
+            ct++;
+        }
+        else {
+            x=arr[i][0];
+            y=arr[i][1];
+        }
+       }
+       return ct;
+    }
+}
