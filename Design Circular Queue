@@ -1,0 +1,70 @@
+public class MyCircularQueue {
+    int front =-1;
+    int rear = -1;
+    int size;
+    int count =0;
+    int [] item  ;
+    public MyCircularQueue(int k) {
+        item = new int[k];
+        size =k;
+
+    }
+    
+    public bool EnQueue(int value) {
+        if (count>= size)
+          return false;
+          rear++;
+          rear = rear%(size);
+          Console.WriteLine(rear);
+          item [rear]=value;
+          if (count ==0)
+          front =rear;
+          count++;
+          return true;
+    }
+    
+    public bool DeQueue() {
+        if (count==0)
+        return false;
+        front++;
+        front %= size;
+        count--;
+        return true;
+    }
+    
+    public int Front() {
+        if (count==0)
+        return -1;
+        return item[front];
+    }
+    
+    public int Rear() {
+         if (count==0)
+        return -1;
+         Console.WriteLine(rear);
+        return item[rear];
+    }
+    
+    public bool IsEmpty() {
+         if (count==0)
+         return true;
+         return false;
+    }
+    
+    public bool IsFull() {
+         if (count==size)
+         return true;
+         return false;
+    }
+}
+
+/**
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * MyCircularQueue obj = new MyCircularQueue(k);
+ * bool param_1 = obj.EnQueue(value);
+ * bool param_2 = obj.DeQueue();
+ * int param_3 = obj.Front();
+ * int param_4 = obj.Rear();
+ * bool param_5 = obj.IsEmpty();
+ * bool param_6 = obj.IsFull();
+ */
